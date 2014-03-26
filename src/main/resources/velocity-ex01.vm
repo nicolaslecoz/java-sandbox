@@ -1,0 +1,18 @@
+bonjour monde $name
+
+nombre d'element = $listeClient.size()
+
+au format json
+
+data = {
+#set($count = $listeClient.size())
+#foreach( $client in $listeClient)
+  client {
+    nom : "$client.name";
+    contact : $client.contact.getListeTelephone();
+    contact2 : $myutil.formaterListeString($client.contact.getListeTelephone());
+  }#if ($count > 1),#end
+
+#set($count = $count - 1)
+#end
+}
